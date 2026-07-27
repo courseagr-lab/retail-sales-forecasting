@@ -1,0 +1,25 @@
+data:
+  raw_path: "data/raw/daily_sales_raw.csv"
+  interim_path: "data/interim/sales_cleaned.csv"
+  processed_path: "data/processed/sales_features.csv"
+  target: "sales"
+  date_col: "date"
+
+cleaning:
+  outlier_rolling_window: 30
+  outlier_std_threshold: 3
+
+split:
+  test_day: 90
+
+model:
+  random_state: 42
+
+mflow:
+  experiment_name: "retail_sales_forecasting"
+  tracking_uri: "mlruns"
+
+output:
+  model_path: "models/"
+  metrics_path: "reports/metrics.json"
+  figures_path: "reports/figures/"
