@@ -10,14 +10,14 @@ cleaning:
   outlier_std_threshold: 3
 
 split:
-  test_day: 90
+  test_days: 90
 
 model:
   random_state: 42
 
-mflow:
-  experiment_name: "retail_sales_forecasting"
-  tracking_uri: "mlruns"
+mlflow:
+  experiment_name: "retail-sales-forecasting"
+  tracking_uri: "sqlite:///mlflow.db"
 
 output:
   model_path: "models/"
