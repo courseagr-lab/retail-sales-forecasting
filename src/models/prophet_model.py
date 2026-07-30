@@ -1,6 +1,20 @@
 import pandas as pd
 from prophet import Prophet
 
+import joblib
+
+from src.data.data_cleaning import project_path
+
+
+def save_prophet_model(model, config):
+    model_path = project_path(config["output"]["model_path"]) / "prophet_final.pkl"
+    model_path.parent.mkdir(parents=True, exist_ok=True)
+    joblib.dump(model, model_path)
+
+
+def load_prophet_model(config):
+    model_path = project_path(config["output"]["model_path"]) / "prophet_final.pkl"
+    return joblib.load(model_path)
 
 def prepare_prophet_data(df, date_col, target):
     return df[[date_col, target]].rename(columns={date_col: "ds", target: "y"})
@@ -32,3 +46,4 @@ def forecast_prophet(model, test, date_col):
 
     forecast = model.predict(future)
     return forecast["yhat"].values
+
